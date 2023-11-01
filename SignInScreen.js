@@ -1,36 +1,49 @@
 import React, { useState } from 'react';
 
-function SignInScreen({ onSignIn, onForgotPassword, onCancel }) {
+function SignInScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSignIn = () => {
-    // Add your logic for signing in here
-    if (username && password) {
-      onSignIn(username);
-    } else {
-      alert('Please fill in both fields.');
-    }
+    // Implement your sign-in logic here
+    // Check if the entered username and password are correct
+    // If correct, provide access to the user's account
+    // Otherwise, show an error message
   };
 
   return (
     <div>
-      <h1>Sign In</h1>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleSignIn}>Sign In</button>
-      <button onClick={onForgotPassword}>Forgot Password</button>
-      <button onClick={onCancel}>Cancel</button>
+      <h2>Sign In To Your Account</h2>
+      <div>
+        <label>
+          Username:
+          <input
+            type="text"
+            placeholder="Enter your username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Password:
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <button onClick={handleSignIn}>Sign In</button>
+      </div>
+      <div>
+        <a href="#">Forgot Password?</a>
+      </div>
     </div>
   );
 }
+
+export default SignInScreen;
