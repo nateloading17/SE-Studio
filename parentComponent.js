@@ -14,6 +14,8 @@ function ParentComponent() {
     confirmPassword: '',
   });
 
+  const [page, setPage] = useState('signup'); // Define a state variable to control the page
+
   const handleSignUp = () => {
     // Extract form data
     const { firstName, lastName, email, username, password, confirmPassword } = formData;
@@ -36,11 +38,13 @@ function ParentComponent() {
 
     // Assuming registration is successful
     setShowConfirmation(true);
+    setPage('confirmation'); // Set the page to 'confirmation'
   };
 
   const handleCancel = () => {
     // This function should handle navigating back to the home screen.
     setShowConfirmation(false);
+    setPage('signup'); // Set the page back to 'signup' when canceled
   };
 
   return (
@@ -50,8 +54,10 @@ function ParentComponent() {
         <ConfirmationScreen onCancel={handleCancel} />
       ) : (
         <>
-          <SignUpScreen formData={formData} setFormData={setFormData} handleSignUp={handleSignUp} />
-          <BecomeTutor />
+          {page === 'signup' && (
+            <SignUpScreen formData={formData} setFormData={setFormData} handleSignUp={handleSignUp} setPage={setPage} />
+          )}
+          {page === 'becomeTutor' && <BecomeTutor setPage={setPage} />}
         </>
       )}
     </div>
@@ -59,4 +65,5 @@ function ParentComponent() {
 }
 
 export default ParentComponent;
+
 
