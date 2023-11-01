@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SignUpScreen from './SignUpScreen';
 import ConfirmationScreen from './ConfirmationScreen';
+import BecomeTutor from './BecomeTutor';
 
 function ParentComponent() {
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -48,10 +49,14 @@ function ParentComponent() {
       {showConfirmation ? (
         <ConfirmationScreen onCancel={handleCancel} />
       ) : (
-        <SignUpScreen formData={formData} setFormData={setFormData} handleSignUp={handleSignUp} />
+        <>
+          <SignUpScreen formData={formData} setFormData={setFormData} handleSignUp={handleSignUp} />
+          <BecomeTutor />
+        </>
       )}
     </div>
   );
 }
 
 export default ParentComponent;
+
